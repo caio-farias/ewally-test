@@ -1,54 +1,58 @@
-# Teste Prático Back End
+# Como executar o projeto
 
-Queremos poder através da aplicação consultar linhas digitáveis de boleto de título bancário
-e pagamento de concessionárias, verificando se a mesma é válida ou não. Sendo válida e
-possuindo valor e/ou data de vencimento ter o retorno desses dados.
+## Via docker-compose
 
-## Instruções
+- Ceritifique-se que existe o docker e docker-compose instalado na sua máquina
+- No diretório raiz do projeto, execute:
 
-O teste consiste em escrever um programa em Node.js que expõe uma API na qual é dada
-como entrada uma linha digitada de um boleto e que retorna:
+  ```
+  docker-compose up --build -d
+  ```
 
-```
-{
-  status​: 200 para linha válida ou 400 para linha inválida
-  amount​: O valor do boleto, se existir
-  expirationDate​: A data de vencimento do boleto, se existir
-  barcode​: Os 44 dígitos correspondentes ao código de barras desse boleto
-}
-```
+- Aplicação acessível a partir de http://localhost:3000/api/v1
 
-Deverá ser utilizado apenas o método GET e o path deve ser configurado como
-''​http://localhost:8080/boleto/xxxxxx​''.
+## Via npm/yarn
 
-Exemplo de resquest
-GET / http://localhost:8080/boleto/​21290001192110001210904475617405975870000002000
+- Ceritifique-se que existe o npm ou yarn instalado na sua máquina
+- No diretório do projeto raiz, execute:
 
-```
-status 200
-{
-  “barcode”: “21299758700000020000001121100012100447561740”,
-  “amount”: “20.00”,
-  “expirationDate”: “2018-07-16”
-}
+  - Utilizando npm:
 
-```
+    ```
+      npm i
+    ```
 
-## O que esperamos do seu teste
+  - Utilizando yarn:
 
-### Que a API seja desenvolvida utilizando Node JS
+    ```
+      yarn
+    ```
 
-- [x] A validação do boleto deve ser feita sem auxílio de bibliotecas de terceiros, aqui queremos avaliar seu raciocínio lógico
-- [ ] É essencial que seja feita a validação dos dígitos verificadores e que seja aceito apenas números na linha digitável
-- [ ] Existem 2 tipos de boletos que seguem regras diferentes: títulos bancários e pagamentos de concessionárias. O código deve funcionar corretamente para ambos
-- [ ] Além das instruções passadas não há especificações especiais sobre a arquitetura da API. Estruture os endpoints da forma que achar melhor, justificando suas escolhas sempre que possível.
+- Agora, execute:
 
-## O que seria bom ver em seu teste
+  - Utilizando yarn:
 
-- [x] Testes unitários
-- [x] Retorno com mensagens específicas para cada tipo de erro
+    ```
+      yarn dev
+    ```
 
-## Entrega
+  - Utilizando npm:
 
-Ao término do desafio, disponibilizar o código fonte via git ou por email, junto com
-instruções de como executar o código.
+    ```
+      npm run dev
+    ```
+
+- Aplicação acessível a partir de http://localhost:3000/api/v1
+
+## Consultando dados de boletos
+
+- Endpoint (GET): http://localhost:3000/api/v1/bills/LINHA_DIGITAVEL
+  - Exemplo (GET): http://localhost:3000/api/v1/bills/00190500954014481606906809350314337370000000100
+  - Resposta:
+    ```
+    {
+      "barcode": "00193373700000001000500940144816060680935031",
+      "amount": 1,
+      "expirationDate": "2007-12-31"
+    }
+    ```
