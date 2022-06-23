@@ -1,0 +1,6 @@
+node_modules
+build
+docker-compose.yaml
+README.md
+*.config.ts
+*.http
