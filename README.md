@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/caio-farias/linhadigitavel2data-app/branch/master/graph/badge.svg?token=GJ6N0U1M9S)](https://codecov.io/gh/caio-farias/linhadigitavel2data-app)
+
 # Como executar o projeto
 
 ## Via docker-compose
