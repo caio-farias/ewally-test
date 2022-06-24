@@ -1,4 +1,4 @@
-import ConcessionarieValidator from './ConcessionarieBillValidator'
+import ConcessionarieValidator from '../src/utils/validators/concessionarieBill.validator'
 
 const concessionarieBillMock = {
   validDigitsLine: '846700000017435900240209024050002435842210108119',

@@ -1,4 +1,4 @@
-import BankBillValidator from './BankBillValidator'
+import BankBillValidator from '../src/utils/validators/bankBill.validator'
 
 const bankBillMock = {
   validDigitsLine: '00190500954014481606906809350314337370000000100',
@@ -19,21 +19,15 @@ describe('Test BankBillValidator', () => {
 
   describe('Test validateDigitsLineWithDVContent method', () => {
     test('should check DigitsLine content and return true', () => {
-      expect(bankBillValidator.validateDigitsLineContent(validDigitsLine)).toBe(
-        true
-      )
+      expect(bankBillValidator.validateDigitsLineContent(validDigitsLine)).toBe(true)
     })
 
     test('should check digitsLine with wrong content and return false', () => {
-      expect(
-        bankBillValidator.validateDigitsLineContent(differentContent)
-      ).toBe(false)
+      expect(bankBillValidator.validateDigitsLineContent(differentContent)).toBe(false)
     })
 
     test('should check digitsLine content with wrong length and return false', () => {
-      expect(bankBillValidator.validateDigitsLineContent(differentLength)).toBe(
-        false
-      )
+      expect(bankBillValidator.validateDigitsLineContent(differentLength)).toBe(false)
     })
   })
   describe('Test validateDigitsLineDV method', () => {

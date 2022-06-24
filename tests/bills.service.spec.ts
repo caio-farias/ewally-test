@@ -1,6 +1,6 @@
-import { extractBillData } from './BillService'
+import { extractBillData } from '../src/services/bills.services'
 
-const barcode = '858900000204000003281833240720183105618666712531'
+const barcode = '00193373700000001000500940144816060680935031'
 const bill = {
   barcode,
   amount: 1.0,

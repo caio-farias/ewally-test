@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from 'express'
-import { enumHttpStatus } from '../enums/enumStatusCode'
-import HttpException from '../HttpException'
+import { enumHttpStatus } from '../enums/statusCode.enum'
+import HttpException from '../httpException.util'
 
 export const errorHandler = (
   err: any,

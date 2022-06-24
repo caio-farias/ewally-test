@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import BankBillValidator from '../../modules/bills/validators/BankBillValidator'
-import ConcessionarieBillValidator from '../../modules/bills/validators/ConcessionarieBillValidator'
+import BankBillValidator from '../validators/bankBill.validator'
+import ConcessionarieBillValidator from '../validators/concessionarieBill.validator'
 
 const concessionaireBillValidator = new ConcessionarieBillValidator()
 const bankBillValidator = new BankBillValidator()

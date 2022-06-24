@@ -1,7 +1,10 @@
-import BillMiddleware from './BillMiddleware'
-import BankBillValidator from './validators/BankBillValidator'
-import ConcessionarieBillValidator from './validators/ConcessionarieBillValidator'
-import HttpException from '../../utils/HttpException'
+import {
+  validateDigitsLineContent,
+  validateDigitsLineDV,
+} from '../src/middlewares/bills.middleware'
+import BankBillValidator from '../src/utils/validators/bankBill.validator'
+import ConcessionarieBillValidator from '../src/utils/validators/concessionarieBill.validator'
+import HttpException from '../src/utils/httpException.util'
 
 const validBankBillParams = {
   req: {
@@ -102,12 +105,11 @@ describe.each([
 ])(
   'Test BillMiddleware',
   ({ validatorType, validator, validParams, invalidContentParams }) => {
-    const billMiddleware: BillMiddleware = new BillMiddleware()
     describe(`Test method validateDigitsLineContent (validator = ${validatorType})`, () => {
       test('should validate digits line, not throw error and call next() once', () => {
         const { req, res, next } = validParams
         try {
-          billMiddleware.validateDigitsLineContent(req, res, next, validator)
+          validateDigitsLineContent(req, res, next, validator)
         } catch (error) {
           expect(error).toBeInstanceOf(HttpException)
         }
@@ -117,7 +119,7 @@ describe.each([
       test('should invalidate digits line (invalid digit) and throw error and not call next()', () => {
         const { req, res, next } = invalidContentParams.invalidDigit
         try {
-          billMiddleware.validateDigitsLineContent(req, res, next, validator)
+          validateDigitsLineContent(req, res, next, validator)
         } catch (error) {
           expect(error).toBeInstanceOf(HttpException)
         }
@@ -127,7 +129,7 @@ describe.each([
       test('should invalidate digits line (invalid length) and throw error and not call next()', () => {
         const { req, res, next } = invalidContentParams.invalidLength
         try {
-          billMiddleware.validateDigitsLineContent(req, res, next, validator)
+          validateDigitsLineContent(req, res, next, validator)
         } catch (error) {
           expect(error).toBeInstanceOf(HttpException)
         }
@@ -139,7 +141,7 @@ describe.each([
       test('should validate DV', () => {
         const { req, res, next } = validParams
         try {
-          billMiddleware.validateDigitsLineDV(req, res, next, validator)
+          validateDigitsLineDV(req, res, next, validator)
         } catch (error) {
           expect(error).not.toBeInstanceOf(HttpException)
         }
@@ -149,7 +151,7 @@ describe.each([
       test('should invalidate DV', () => {
         const { req, res, next } = invalidContentParams.invalidDV
         try {
-          billMiddleware.validateDigitsLineDV(req, res, next, validator)
+          validateDigitsLineDV(req, res, next, validator)
         } catch (error) {
           expect(error).toBeInstanceOf(HttpException)
         }

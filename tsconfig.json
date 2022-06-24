@@ -1,6 +1,6 @@
 {
   "include": ["src"],
-  "exclude": ["**/*spec.ts", "build", "node_modules", "*.config.ts"],
+  "exclude": ["tests", "build", "node_modules", "*.config.ts"],
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,

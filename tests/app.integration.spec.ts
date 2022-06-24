@@ -1,8 +1,9 @@
-import { enumHttpStatus } from './utils/enums/enumStatusCode'
-import { enumErrorMessage } from './utils/enums/enumErrorsMessages'
-import req from 'supertest'
-import app from './app'
+import * as req from 'supertest'
+import app from '../src/app'
+import { enumErrorMessage } from './../src/utils/enums/errorMessages.enum'
+import { enumHttpStatus } from '../src/utils/enums/statusCode.enum'
 
+const apiContext = '/api/v1'
 const validBankBillDigitsLine = '00190500954014481606906809350314337370000000100'
 const invalidBankBillDigitsLine = '00190500954014481606906809350314237370000000100'
 
@@ -10,7 +11,7 @@ const validConcessionarieBillDigitsLine =
   '846700000017435900240209024050002435842210108119'
 const invalidConcessionarieBillDigitsLine =
   '846500000017435900240209024050002435842210108119'
-// ;('84672435842210108110000017435900242090240500')
+
 describe.each([
   {
     scenario: 'Bank Bills',
@@ -47,7 +48,7 @@ describe.each([
     })
     /* Testing invalid bill */
     describe('input -> invalid bill', () => {
-      it('should respond with 400 status code and invalidBillMessage', async () => {
+      test('should respond with 400 status code and invalidBillMessage', async () => {
         const res = await req(app)
           .get(apiContext + `/bills/${invalidDigitsLine}`)
           .set('Accept', 'application/json')
