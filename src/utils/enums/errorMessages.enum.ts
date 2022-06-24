@@ -1,7 +1,6 @@
 export enum enumErrorMessage {
-  invalidBillContent = 'Invalid barcode content.',
-  invalidBillDV = 'Invalid barcode DV.',
-  notFoundBill = 'Bill does not exists.',
-  alreadyExistentBill = 'This bill already exists.',
+  invalidBillContent = 'Invalid digitsLine content.',
+  invalidBillDigitsLineDV = 'Invalid digitsLine DV.',
+  invalidBillBarcodeDV = 'Invalid barcode DV.',
   internalServerError = 'Internal server error.',
 }
