@@ -1,7 +1,7 @@
 import * as express from 'express'
 import * as logger from 'morgan'
-import billsRouter from './routes/bill.routes'
-import { errorHandler } from './utils/hadlers/error.handler'
+import billsRouter from './routes/bills.routes'
+import { errorHandler } from './utils/handlers/error.handler'
 import 'dotenv/config'
 
 const app = express()

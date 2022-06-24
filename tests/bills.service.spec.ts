@@ -1,4 +1,4 @@
-import { extractBillData } from '../src/services/bills.services'
+import { extractBillDataService } from '../src/services/bills.services'
 
 const barcode = '00193373700000001000500940144816060680935031'
 const bill = {
@@ -8,6 +8,6 @@ const bill = {
 }
 describe('Test Bill Service', () => {
   test('should respond a valid bill object', () => {
-    expect(extractBillData(barcode)).toEqual(expect.objectContaining(bill))
+    expect(extractBillDataService(barcode)).toEqual(expect.objectContaining(bill))
   })
 })
