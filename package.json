@@ -18,7 +18,7 @@
     "test-digitsOperations": "jest --watch --detectOpenHandles tests/digitsOperations.util.spec.ts",
     "test-verificationDigitsCalc": "jest --watch --detectOpenHandles tests/verificationDigitsCalc.util.spec.ts",
     "integration-test": "jest --watch --detectOpenHandles tests/app.integration.spec.ts",
-    "tests-app": "jest --collect-coverage --detectOpenHandles"
+    "test-app": "jest --collect-coverage --detectOpenHandles"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
