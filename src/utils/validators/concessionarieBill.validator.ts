@@ -1,8 +1,13 @@
-import { isAllDigitsIntegers } from './../digitsOperations.util'
-import { enumDVIndex, IBillValidator } from './billValidator.interface'
+import {
+  calculateDiffBetweenStrings,
+  isAllDigitsIntegers,
+} from './../digitsOperations.util'
+import { IBillValidator } from './billValidator.interface'
 import { convert48DigitsLineToBarcode } from '../digitsLineConversion.util'
 import { digitsLine48FieldsDVCalc, DVCalculation } from '../verificationDigitsCalc.util'
 import { extractDvFromBarcode } from '../barcodeOperation.util'
+import { enumDVIndex } from '../enums/dvIndex.enum'
+import { enumErrorMessage } from '../enums/errorMessages.enum'
 
 export default class ConcessionarieBillValidator implements IBillValidator {
   digitsLineLength = 48
@@ -36,12 +41,38 @@ export default class ConcessionarieBillValidator implements IBillValidator {
         this.mod10CustomModMapping
       )
     }
-
+    const validationError = this.generateValidationErrorMessage(
+      digitsLineDV,
+      calculatedDigitsLineDV,
+      barcodeDV,
+      calculatedBarcodeDV
+    )
     return {
-      isValid:
-        calculatedBarcodeDV === barcodeDV && calculatedDigitsLineDV === digitsLineDV,
+      isValid: validationError === null,
       barcode,
+      validationError,
     }
+  }
+
+  private generateValidationErrorMessage(
+    digitsLineDV: number,
+    calculatedDigitsLineDV: number,
+    barcodeDV: number,
+    calculatedBarcodeDV: number
+  ) {
+    if (digitsLineDV !== calculatedDigitsLineDV) {
+      return (
+        enumErrorMessage.invalidBillBarcodeDV +
+        ` Your digitsLine has DVs equal ${digitsLineDV}, ` +
+        `where it should be ${calculatedDigitsLineDV}`
+      )
+    } else if (barcodeDV !== calculatedBarcodeDV) {
+      return (
+        enumErrorMessage.invalidBillBarcodeDV +
+        ` Your barcode has DV equal ${barcodeDV}, where it should be ${calculatedBarcodeDV}`
+      )
+    }
+    return null
   }
 
   validateDigitsLineContent(digitsLine: string): boolean {

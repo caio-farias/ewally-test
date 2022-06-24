@@ -29,10 +29,10 @@ export const validateDigitsLineDV = (
   billValidator: IBillValidator
 ) => {
   const { digitsLine } = req.params
-  const { isValid, barcode } = billValidator.validateDigitsLineDV(digitsLine)
+  const { isValid, barcode, validationError } =
+    billValidator.validateDigitsLineDV(digitsLine)
 
-  if (!isValid)
-    throw new HttpException(enumHttpStatus.BAD_REQUEST, enumErrorMessage.invalidBillDV)
+  if (!isValid) throw new HttpException(enumHttpStatus.BAD_REQUEST, validationError)
 
   req.params.barcode = barcode
   return next()

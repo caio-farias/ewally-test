@@ -1,6 +1,5 @@
 import * as req from 'supertest'
 import app from '../src/app'
-import { enumErrorMessage } from './../src/utils/enums/errorMessages.enum'
 import { enumHttpStatus } from '../src/utils/enums/statusCode.enum'
 
 const apiContext = '/api/v1'
@@ -57,7 +56,7 @@ describe.each([
         expect(res.status).toEqual(enumHttpStatus.BAD_REQUEST)
         expect(res.body).toEqual(
           expect.objectContaining({
-            message: enumErrorMessage.invalidBillDV,
+            message: expect.stringContaining('Invalid'),
           })
         )
       })

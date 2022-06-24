@@ -50,3 +50,6 @@ export const roundUpTensDigit = (num: number): number => {
   const numWithoutUnityDigit = numString.slice(0, tensDigitPosition + 1)
   return (+numWithoutUnityDigit + 1) * 10
 }
+
+export const calculateDiffBetweenStrings = (mainString: string, matchString) =>
+  mainString.split(mainString).join('')

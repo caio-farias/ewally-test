@@ -1,4 +1,4 @@
-import { enumDVIndex } from './validators/billValidator.interface'
+import { enumDVIndex } from './enums/dvIndex.enum'
 
 export const convert48DigitsLineToBarcode = (digitsLine: string) => {
   const barcodeDV = +digitsLine[enumDVIndex._48digitsLine]
