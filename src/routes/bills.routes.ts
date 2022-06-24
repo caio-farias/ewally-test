@@ -1,21 +1,18 @@
 import { Request, Response, Router } from 'express'
 import { asyncHandler } from '../utils/handlers/async.handler'
 import { injectValidatorHandler } from '../utils/handlers/injectValidator.handler'
-import {
-  validateDigitsLineContent,
-  validateDigitsLineDV,
-} from '../middlewares/bills.middleware'
-import { getBillDataController } from '../controllers/bills.controller'
+import * as BillsMiddleware from '../middlewares/bills.middleware'
+import * as BillsController from '../controllers/bills.controller'
 
 const router = Router()
 
 router.get(
   '/bills/:digitsLine',
   [
-    injectValidatorHandler(validateDigitsLineContent),
-    injectValidatorHandler(validateDigitsLineDV),
+    injectValidatorHandler(BillsMiddleware.validateDigitsLineContent),
+    injectValidatorHandler(BillsMiddleware.validateDigitsLineDV),
   ],
-  asyncHandler((req: Request, res: Response) => getBillDataController(req, res))
+  asyncHandler((req: Request, res: Response) => BillsController.getBillData(req, res))
 )
 
 export default router

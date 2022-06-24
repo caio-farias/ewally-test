@@ -1,4 +1,4 @@
-import { IBillValidator } from './billValidator.interface'
+import IBillValidator from './billValidator.interface'
 import { convert47DigitsLineToBarcode } from '../digitsLineConversion.util'
 import { DVCalculation, digitsLine47FieldsDVCalc } from '../verificationDigitsCalc.util'
 import { extractDvFromBarcode } from '../barcodeOperation.util'

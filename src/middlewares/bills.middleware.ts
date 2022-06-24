@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { enumErrorMessage } from '../utils/enums/errorMessages.enum'
 import { enumHttpStatus } from '../utils/enums/statusCode.enum'
-import { IBillValidator } from '../utils/validators/billValidator.interface'
+import IBillValidator from '../utils/validators/billValidator.interface'
 import HttpException from '../utils/httpException.util'
 
 export const validateDigitsLineContent = (

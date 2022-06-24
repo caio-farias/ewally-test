@@ -1,4 +1,4 @@
-export abstract class IBillValidator {
+export default interface IBillValidator {
   validateDigitsLineDV: Function
   validateDigitsLineContent: Function
 }

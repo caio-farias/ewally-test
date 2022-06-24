@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import { extractBillDataService } from '../services/bills.services'
+import * as BillsService from '../services/bills.services'
 
-export const getBillDataController = async (req: Request, res: Response) => {
+export const getBillData = async (req: Request, res: Response) => {
   const { barcode } = req.params
-  const bill = extractBillDataService(barcode)
+  const bill = BillsService.extractBillData(barcode)
   return res.json(bill)
 }

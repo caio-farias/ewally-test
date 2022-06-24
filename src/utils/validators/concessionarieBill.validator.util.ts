@@ -1,8 +1,8 @@
 import {
   calculateDiffBetweenStrings,
   isAllDigitsIntegers,
-} from './../digitsOperations.util'
-import { IBillValidator } from './billValidator.interface'
+} from '../digitsOperations.util'
+import IBillValidator from './billValidator.interface'
 import { convert48DigitsLineToBarcode } from '../digitsLineConversion.util'
 import { digitsLine48FieldsDVCalc, DVCalculation } from '../verificationDigitsCalc.util'
 import { extractDvFromBarcode } from '../barcodeOperation.util'
@@ -54,6 +54,12 @@ export default class ConcessionarieBillValidator implements IBillValidator {
     }
   }
 
+  validateDigitsLineContent(digitsLine: string): boolean {
+    if (digitsLine.length != this.digitsLineLength) return false
+    if (!isAllDigitsIntegers(digitsLine)) return false
+    return true
+  }
+
   private generateValidationErrorMessage(
     digitsLineDV: number,
     calculatedDigitsLineDV: number,
@@ -73,11 +79,5 @@ export default class ConcessionarieBillValidator implements IBillValidator {
       )
     }
     return null
-  }
-
-  validateDigitsLineContent(digitsLine: string): boolean {
-    if (digitsLine.length != this.digitsLineLength) return false
-    if (!isAllDigitsIntegers(digitsLine)) return false
-    return true
   }
 }
