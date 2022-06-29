@@ -1,27 +1,30 @@
 {
-  "include": ["src"],
-  "exclude": ["tests", "build", "node_modules", "*.config.ts"],
-  "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "paths": {
-      "express": ["/node_modules/express/lib/express"],
-      "morgan": ["/node_modules/morgan/lib/morgan"]
-    },
-    "outDir": "./build",
-    "baseUrl": ".",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+	"include": ["src"],
+	"exclude": ["tests", "build", "node_modules", "*.config.ts", "*.js"],
+	"compilerOptions": {
+		"types": ["@types/jest"],
+		"typeRoots": ["src/@types"],
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "es2015",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"paths": {
+			"express": ["/node_modules/express/lib/express"],
+			"morgan": ["/node_modules/morgan/lib/morgan"]
+		},
+		"outDir": "./build",
+		"baseUrl": ".",
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": false,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false
+	}
 }

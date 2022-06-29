@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    container_name: ewally-test-api
+    container_name: linhadigitiavel2data-app
     build:
       context: .
       dockerfile: ./.Dockerfile
@@ -10,11 +10,11 @@ services:
       NODE_ENV: development
       NODE_PATH: .
       CONTEXT_PATH: /api/v1
+      PORT: 3000
 
     ports:
       - 3000:3000
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    # restart: unless-stopped
     command: npm run start

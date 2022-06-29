@@ -1,5 +1,5 @@
 export interface Bill {
-  barcode: string
-  amount?: number
-  expirationDate?: string
+	barcode: string
+	amount?: string
+	expirationDate?: string
 }

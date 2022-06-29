@@ -1,4 +1,4 @@
-FROM node:12.19.0-alpine3.9 AS development
+FROM node:18.4-alpine3.15 AS development
 
 WORKDIR /usr/src/app
 
@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:12.19.0-alpine3.9 as production
+FROM node:18.4-alpine3.15 as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -28,4 +28,6 @@ COPY . .
 
 COPY --from=development /usr/src/app/build ./build
 
-CMD ["node", "build/server.js"]
+EXPOSE ${PORT}
+
+CMD ["npm", "run start"]

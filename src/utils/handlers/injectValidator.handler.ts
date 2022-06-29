@@ -1,18 +1,19 @@
 import { NextFunction, Request, Response } from 'express'
-import BankBillValidator from '../validators/bankBill.validator'
-import ConcessionarieBillValidator from '../validators/concessionarieBill.validator'
+import BankBillValidator from '../../validators/bankBill.validator'
+import ConcessionarieBillValidator from '../../validators/concessionarieBill.validator'
 
 const concessionaireBillValidator = new ConcessionarieBillValidator()
 const bankBillValidator = new BankBillValidator()
 
-const defineValidator = (req: Request, res: Response) => {
-  const { digitsLine } = req.params
-  if (digitsLine[0] === '8') return concessionaireBillValidator
-  return bankBillValidator
+export const defineValidator = (req: Request, res: Response, next: NextFunction) => {
+	const { digitsLine } = req.params
+	const digitsLineLength = digitsLine.length
+	if (digitsLineLength === 48) {
+		req.digitsLineLength = digitsLineLength
+		req.billValidator = concessionaireBillValidator
+	} else {
+		req.digitsLineLength = digitsLineLength
+		req.billValidator = bankBillValidator
+	}
+	return next()
 }
-
-export const injectValidatorHandler =
-  (func: Function) => (request: Request, response: Response, next: NextFunction) => {
-    const validator = defineValidator(request, response)
-    func(request, response, next, validator)
-  }

@@ -1,56 +1,56 @@
 [![codecov](https://codecov.io/gh/caio-farias/linhadigitavel2data-app/branch/master/graph/badge.svg?token=GJ6N0U1M9S)](https://codecov.io/gh/caio-farias/linhadigitavel2data-app)
 
-# Como executar o projeto
+# How to run the project
 
 ## Via docker-compose
 
-- Ceritifique-se que existe o docker e docker-compose instalado na sua máquina
-- No diretório raiz do projeto, execute:
+- Make sure docker and docker-compose are installed in your machine.
+- At your the project's directory, execute:
 
   ```
   docker-compose up --build -d
   ```
 
-- Aplicação acessível a partir de http://localhost:3000/api/v1
+- The app will be available at: http://localhost:3000/api/v1
 
 ## Via npm/yarn
 
-- Ceritifique-se que existe o npm ou yarn instalado na sua máquina
-- No diretório do projeto raiz, execute:
+- Make sure npm or yarn are installed in your machine.
+- At the project's root directory, execute:
 
-  - Utilizando npm:
+  - Using npm:
 
     ```
       npm i
     ```
 
-  - Utilizando yarn:
+  - Using yarn:
 
     ```
       yarn
     ```
 
-- Agora, execute:
+- Now, execute:
 
-  - Utilizando yarn:
+  - Using yarn:
 
     ```
       yarn dev
     ```
 
-  - Utilizando npm:
+  - Using npm:
 
     ```
       npm run dev
     ```
 
-- Aplicação acessível a partir de http://localhost:3000/api/v1
+- The app will be available at: http://localhost:3000/api/v1.
 
-## Consultando dados de boletos
+## Getting data from bank bills and concessionarie bills
 
-- Endpoint (GET): http://localhost:3000/api/v1/bills/LINHA_DIGITAVEL
-  - Exemplo (GET): http://localhost:3000/api/v1/bills/00190500954014481606906809350314337370000000100
-  - Resposta:
+- Endpoint (GET): http://localhost:3000/api/v1/bills/BILL_NUMBER
+  - Example (GET): http://localhost:3000/api/v1/bills/00190500954014481606906809350314337370000000100
+  - Expected response body:
     ```
     {
       "barcode": "00193373700000001000500940144816060680935031",

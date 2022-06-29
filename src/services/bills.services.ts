@@ -1,12 +1,16 @@
 import {
-  extractBarcodeAmount,
-  extractBarcodeExpirationDate,
-} from '../utils/barcodeOperation.util'
+	extractBarcodeAmount,
+	extractBarcodeExpirationDate,
+} from '../utils/barcodeDataExtraction.util'
 import { Bill } from 'src/entity/bills.entity'
 
-export const extractBillData = (barcode: string) => {
-  const bill = { barcode } as Bill
-  bill.amount = extractBarcodeAmount(barcode)
-  bill.expirationDate = extractBarcodeExpirationDate(barcode)
-  return bill
+export const extractBillData = (barcode: string, digitsLineLength: number) => {
+	const bill = { barcode } as Bill
+	if (digitsLineLength === 48) {
+		bill.amount = extractBarcodeAmount(barcode, 4, 14)
+	} else {
+		bill.expirationDate = extractBarcodeExpirationDate(barcode, 5, 9)
+		bill.amount = extractBarcodeAmount(barcode, 9)
+	}
+	return bill
 }

@@ -1,13 +1,22 @@
 import * as BillsService from '../src/services/bills.services'
 
-const barcode = '00193373700000001000500940144816060680935031'
-const bill = {
-  barcode,
-  amount: 1.0,
-  expirationDate: '2007-12-31',
+const bankBillData = {
+	barcode: '00193373700000001000500940144816060680935031',
+	amount: '1.00',
+	expirationDate: '2007-12-31',
 }
-describe('Test Bill Service', () => {
-  test('should respond a valid bill object', () => {
-    expect(BillsService.extractBillData(barcode)).toEqual(expect.objectContaining(bill))
-  })
+
+const concessionarieBillData = {
+	barcode: '846700000017435900240209024050002435842210108119',
+	amount: '17.43',
+}
+
+describe.each([
+	{ type: 'bankBillData', billData: bankBillData },
+	{ type: 'concessionarieBillDat`', billData: concessionarieBillData },
+])('Test Bill Service', ({ type, billData }) => {
+	test(`should respond a valid bill object (${type})`, () => {
+		const { barcode } = billData
+		expect(BillsService.extractBillData(barcode, barcode.length)).toEqual(billData)
+	})
 })
